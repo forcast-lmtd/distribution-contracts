@@ -3,7 +3,9 @@ pragma solidity >=0.8.0 <0.9.0;
 
 
 /**
-    merkle tree option A: contract keeps tracks of distribution root hash and address withdraw status
+    merkle tree 
+    
+    option A: contract keeps tracks of distribution root hash and address withdraw status
 
     The distribution computation is made offchain and the amounts to withdraw
     from each distribution are stored in a merkle tree. The contract store the head
@@ -20,7 +22,7 @@ pragma solidity >=0.8.0 <0.9.0;
     - on each withdraw, the contract verifies the merkle tree
     - each withdraw can interact with 1 distribution (merkle tree)
 
-    Option C: tracks merke tree roots, withdraw status and 
+    We will use option A
  */
 
 contract MerkleTreeDistribution {
