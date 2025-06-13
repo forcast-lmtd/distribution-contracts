@@ -219,19 +219,6 @@ contract PoolMaster is
         return poolAddress;
     }
 
-    function _checkParticipationToken(address token) internal view returns (bool) {
-        ERC20 t = ERC20(token);
-        uint256 _sharesLimit = PoolMasterConfigInterface(getPoolMasterConfig())
-            .getSharesLimit();
-        require(
-            t.totalSupply() <= _sharesLimit, 
-            "INVALID_PARTICIPATION_TOKEN");
-        require(
-            t.decimals() == 0, 
-            "INVALID_PARTICIPATION_TOKEN");
-        return true;
-    }
-
     /**************************** */
     /**************************** */
     // getters
@@ -307,10 +294,6 @@ contract PoolMaster is
             participationToken = createParticipationToken(
                 users, shares, false
             );
-        } else {
-            // existent participation token must have no more than 'shareLimit' total supply 
-            // and 0 decimals
-            _checkParticipationToken(participationToken);
         }
         _creatGeneralParticipationPool(
             users[0],
@@ -436,10 +419,6 @@ contract PoolMaster is
             participationToken = createParticipationToken(
                 users, shares, false
             );
-        } else {
-            // existent participation token must have no more than 'shareLimit' total supply 
-            // and 0 decimals
-            _checkParticipationToken(participationToken);
         }
         _creatGeneralParticipationPool(
             users[0],
